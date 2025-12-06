@@ -18,6 +18,9 @@
 
   let activeUrl = $derived(page.url.pathname);
   let user = $derived(data.user);
+  
+  // Shared state for selected tool
+  let selectedTab = $state(page.url.searchParams.get('tab') || 'todo');
 </script>
 
 <svelte:head>
@@ -33,23 +36,22 @@
     />
     <span
       class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"
-      >ToDo</span
+      >Utilities</span
     >
   </NavBrand>
   <DarkMode class="ml-auto" />
   <NavHamburger />
-  <NavUl activeClass="text-red-500 !text-red-500" {activeUrl}>
+  <NavUl activeClass="text-red-500 !text-red-500" {activeUrl}>  
     <NavLi href="/dashboard">Dashboard</NavLi>
-    <NavLi class="cursor-pointer">
+    <!-- <NavLi class="cursor-pointer">
       Tools<ChevronDownOutline class="text-primary-800 inline h-6 w-6 dark:text-white" />
-    </NavLi>
-    <Dropdown simple class="w-44">
-      <DropdownItem href="/">Timer</DropdownItem>
-      <DropdownItem href="/docs/components/navbar">Notes</DropdownItem>
-      <DropdownItem href="/">Earnings</DropdownItem>
-      <!-- <DropdownDivider />
-      <DropdownItem href="/">Sign out</DropdownItem> -->
-    </Dropdown>
+    </NavLi> -->
+    <!-- <Dropdown simple class="w-44">
+      <DropdownItem onclick={() => (selectedTab = "todo")} href="/dashboard">ToDo</DropdownItem>
+      <DropdownItem onclick={() => (selectedTab = "timer")} href="/dashboard">Timer</DropdownItem>
+      <DropdownItem onclick={() => (selectedTab = "notes")}>Notes</DropdownItem>
+      <DropdownItem onclick={() => (selectedTab = "earnings")}>Earnings</DropdownItem>
+    </Dropdown> -->
     {#if user}
       <NavLi>
         <form action="/logout?/logout" method="POST" class="inline">
