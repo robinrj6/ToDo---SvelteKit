@@ -5,12 +5,19 @@
     InputAddon,
     ButtonGroup,
     Button,
+    Alert
   } from "flowbite-svelte";
   import { UserCircleSolid } from "flowbite-svelte-icons";
+  export let form: { success?: boolean; message?: string } | null;
 </script>
 
 <div class="flex flex-col justify-center items-center h-full" style="height: 80vh;">
-  <form action="?/login" method="POST">
+  <form action="?/register" method="POST" class="w-full max-w-md">
+    {#if form?.message}
+      <Alert color={form.success ? 'green' : 'red'} class="mb-4">
+        {form.message}
+      </Alert>
+    {/if}
     <div class="mb-6 w-80">
       <Label for="username" class="mb-2 block">Username</Label>
       <ButtonGroup class="w-full">
@@ -30,11 +37,8 @@
 
       <Button
         class="mt-4 w-full bg-red-500 text-white dark:bg-red-600 dark:text-white"
-        type="submit">Sign In</Button
+        type="submit">Submit New User</Button
       >
     </div>
   </form>
-  <p>
-    New user? <a href="/register" class="text-blue-500 ml-2">Register here</a>
-  </p>
 </div>
