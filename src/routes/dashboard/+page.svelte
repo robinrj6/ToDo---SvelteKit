@@ -28,10 +28,10 @@
   </div>
 
   <!-- Dynamic Content Section -->
-  <div class="mt-6 p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
-    <h2 class="text-xl font-semibold mb-4">
+  <div class="mt-6 p-6 bg-gray-50 dark:bg-gray-800 rounded-lg flex flex-col justify-center items-center">
+    <h1 class="text-xl font-semibold mb-4">
       {tabs.find((t) => t.id === activeTab)?.label}
-    </h2>
+    </h1>
     <div class="text-gray-700 dark:text-gray-300">
       {#if activeTab === "todo"}
         <Todo />
